@@ -1,4 +1,4 @@
-package UD1.ExerciciProposat1;
+package UD1.EjercicioPropuesto1;
 
 public class Libros {
 
