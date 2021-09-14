@@ -1,10 +1,13 @@
-package UD1.EjercicioPropuesto2;
+package UD1.EjercicioPropuesto3;
+
+import java.util.ArrayList;
 
 public class Usuarios
 {
     //ATRIBUTOS
     String nombre, apellido1, apellido2, DNI, telefono;
     int codigo;
+    ArrayList<Libros> librosPrestados;
 
     //CONSTRUCTOR
     public Usuarios(String nombre, String apellido1, String apellido2, String DNI, String telefono, int codigo) {
@@ -14,6 +17,7 @@ public class Usuarios
         this.DNI = DNI;
         this.telefono = telefono;
         this.codigo = codigo;
+        this.librosPrestados = null;
     }
 
     //Constructor copia
@@ -73,6 +77,12 @@ public class Usuarios
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    //METODOS
+    public void prestarLibros(Libros libro)
+    {
+        librosPrestados.add(libro);
     }
 
     //PRINT
