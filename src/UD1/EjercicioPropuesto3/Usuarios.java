@@ -1,9 +1,13 @@
 package UD1.EjercicioPropuesto3;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Usuarios
 {
+    //SCANNER
+    Scanner in = new Scanner(System.in);
+
     //ATRIBUTOS
     String nombre, apellido1, apellido2, DNI, telefono;
     int codigo;
@@ -17,7 +21,7 @@ public class Usuarios
         this.DNI = DNI;
         this.telefono = telefono;
         this.codigo = codigo;
-        this.librosPrestados = null;
+        this.librosPrestados = new ArrayList<>();
     }
 
     //Constructor copia
@@ -79,6 +83,10 @@ public class Usuarios
         this.codigo = codigo;
     }
 
+    public ArrayList<Libros> getLibrosPrestados() {
+        return librosPrestados;
+    }
+
     //METODOS
     public void prestarLibros(Libros libro)
     {
@@ -88,13 +96,20 @@ public class Usuarios
     //PRINT
     @Override
     public String toString() {
+
+        int countLibros = 0;
+        for (Libros n : librosPrestados)
+        {
+            countLibros += 1;
+        }
+
         return
-                "nombre='" + nombre + '\'' +
-                ", apellido1='" + apellido1 + '\'' +
-                ", apellido2='" + apellido2 + '\'' +
-                ", DNI='" + DNI + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", codigo=" + codigo +
-                '}';
+                "nombre: " + nombre +
+                "apellido1: " + apellido1 +
+                "apellido2: " + apellido2 +
+                "DNI: " + DNI +
+                "telefono: " + telefono +
+                "codigo: " + codigo +
+                "Libros prestados: " + countLibros;
     }
 }
