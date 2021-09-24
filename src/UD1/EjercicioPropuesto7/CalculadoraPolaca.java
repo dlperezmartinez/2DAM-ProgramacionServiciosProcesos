@@ -10,11 +10,12 @@ public class CalculadoraPolaca
         Scanner in = new Scanner(System.in);
 
         //VARIABLES
-        Deque<String> elementos = new ArrayDeque<String>();
+        Deque<Integer> elementos = new ArrayDeque<Integer>();
 
         int i = 1; //se usa para numerar los elementos
         boolean continuar = true; //se usa para el while
         String elemento = "";
+        int numeros;
         char operador;
         int resultado = 0;
 
@@ -27,25 +28,29 @@ public class CalculadoraPolaca
         while (continuar)
         {
             System.out.print( i++ + "º: ");
-            elementos.push(elemento = in.nextLine());
 
+            String cosa = in.nextLine();
 
-            if (elemento.equals("="))
+            if (cosa == (int)Integer.valueOf(cosa))
             {
-                continuar = false;//SALIR
-                elementos.removeFirst(); //Necesito borrar el = de la lista
-            }
-        }
 
-        //CALCULO
-        for (String n : elementos)
-        {
-            if (elementos.peek() == "+" || elementos.peek() == "-" || elementos.peek() == "*" || elementos.peek() == "/")
-            {
-                operadores.add(Character.valueOf(elementos.pop()));
             }
 
-            System.out.println(elementos.pop());
+            /*try
+            {
+                numeros = in.nextInt();
+                elementos.push(numeros);
+            }
+            catch (InputMismatchException e)
+            {
+                elementos.push(Calcular(elementos.pop(), elementos.pop(), String.valueOf(elemento)));
+
+                /*if (elemento.equals("="))
+                {
+                    continuar = false;//SALIR
+                    elementos.removeFirst(); //Necesito borrar el = de la lista
+                }*/
+            //}
         }
 
         System.out.println("Resultado: " + resultado);
@@ -53,24 +58,26 @@ public class CalculadoraPolaca
         System.out.println("GRACIAS POR ÚTILIZAR ESTA CALCULADORA.");
     }
 
-    public int Calcular (int primero, int segundo, char signo)
+    public static int Calcular(int segundo, int primero, String signo)
     {
-        int resultado;
+        int resultado = 0;
 
         switch (signo)
         {
             case "+":
-
-                operador = '+';
+                resultado = primero + segundo;
                 break;
             case "-":
-                operador = '-';
+                resultado = primero - segundo;
                 break;
             case "*":
-                operador = '*';
+                resultado = primero * segundo;
                 break;
             case "/":
-                operador = '/';
+                resultado = primero / segundo;
+                break;
+            default:
+                System.out.println("Introduce un número entero o un signo (+ - * /)");
                 break;
         }
 
