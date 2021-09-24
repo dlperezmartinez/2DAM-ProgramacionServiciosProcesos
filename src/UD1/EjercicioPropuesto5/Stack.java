@@ -2,6 +2,7 @@ package UD1.EjercicioPropuesto5;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Queue;
 
 public class Stack
 {
@@ -15,9 +16,11 @@ public class Stack
         palabras.push("Cuatro");
         palabras.push("Cinco");
 
+        System.out.println(palabras.peek());
+
         for (String n : palabras)
         {
-            System.out.println(palabras.getFirst()); //TODO no sé el objetivo de la actividad
+            System.out.println(palabras.pop()); //TODO no sé el objetivo de la actividad
         }
     }
 }
