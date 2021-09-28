@@ -4,20 +4,30 @@ import java.util.*;
 
 public class CalculadoraPolaca
 {
+    static boolean IsOperator(String cosa)
+    {
+        if (cosa == "+" || cosa == "-" || cosa == "*" || cosa == "/")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public static void main(String[] args)
     {
         //SCANNER
         Scanner in = new Scanner(System.in);
 
         //VARIABLES
-        Deque<Integer> elementos = new ArrayDeque<Integer>();
+        Deque<String> elementos = new ArrayDeque<String>();
 
         int i = 1; //se usa para numerar los elementos
         boolean continuar = true; //se usa para el while
-        String elemento = "";
-        int numeros;
-        char operador;
         int resultado = 0;
+        String elemento;
 
         System.out.println("\n-CALCULADORA POLACA-\n");
 
@@ -29,52 +39,50 @@ public class CalculadoraPolaca
         {
             System.out.print( i++ + "º: ");
 
-            String cosa = in.nextLine();
+            elementos.push(elemento = in.nextLine());
 
-            if (cosa == (int)Integer.valueOf(cosa))
+            if (elemento == "=")
             {
-
+                elementos.removeFirst();
+                continuar = false;
             }
-
-            /*try
-            {
-                numeros = in.nextInt();
-                elementos.push(numeros);
-            }
-            catch (InputMismatchException e)
-            {
-                elementos.push(Calcular(elementos.pop(), elementos.pop(), String.valueOf(elemento)));
-
-                /*if (elemento.equals("="))
-                {
-                    continuar = false;//SALIR
-                    elementos.removeFirst(); //Necesito borrar el = de la lista
-                }*/
-            //}
         }
+
+        while (!elementos.isEmpty())
+        {
+            if (IsOperator(elementos.peek()))
+            {
+                Calcular(elementos.pop(), elementos.pop(), elementos.pop());
+            }
+        }
+
 
         System.out.println("Resultado: " + resultado);
 
         System.out.println("GRACIAS POR ÚTILIZAR ESTA CALCULADORA.");
     }
 
-    public static int Calcular(int segundo, int primero, String signo)
+    static int Calcular(String signo, String derecha, String izquierda)
     {
         int resultado = 0;
 
         switch (signo)
         {
             case "+":
-                resultado = primero + segundo;
+                if (!IsOperator(derecha) && !IsOperator(izquierda))
+                {
+                    resultado = Integer.parseInt(izquierda + derecha);
+                }
+
                 break;
             case "-":
-                resultado = primero - segundo;
+                resultado = izquierda - derecha;
                 break;
             case "*":
-                resultado = primero * segundo;
+                resultado = izquierda * derecha;
                 break;
             case "/":
-                resultado = primero / segundo;
+                resultado = izquierda / derecha;
                 break;
             default:
                 System.out.println("Introduce un número entero o un signo (+ - * /)");
