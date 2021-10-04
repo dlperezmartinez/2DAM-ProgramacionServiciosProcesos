@@ -1,7 +1,7 @@
 package UD1.EjercicioPropuesto7;
 
 import java.util.*;
-
+/*
 public class CalculadoraPolaca
 {
     static boolean IsOperator(String cosa)
@@ -48,47 +48,52 @@ public class CalculadoraPolaca
             }
         }
 
-        while (!elementos.isEmpty())
-        {
-            if (IsOperator(elementos.peek()))
-            {
-                Calcular(elementos.pop(), elementos.pop(), elementos.pop());
-            }
-        }
-
+        Calcular(elementos);
 
         System.out.println("Resultado: " + resultado);
 
         System.out.println("GRACIAS POR ÚTILIZAR ESTA CALCULADORA.");
     }
 
-    static int Calcular(String signo, String derecha, String izquierda)
+    static Deque Calcular(Deque<String> elementos)
     {
         int resultado = 0;
+        String izquierda, derecha, signo;
+        Deque<String> elementos2;
 
-        switch (signo)
+        while (!elementos.isEmpty())
         {
-            case "+":
-                if (!IsOperator(derecha) && !IsOperator(izquierda))
-                {
-                    resultado = Integer.parseInt(izquierda + derecha);
-                }
+            if (IsOperator(elementos.peek()))
+            {
+                signo = elementos.pop();
+            }
 
-                break;
-            case "-":
-                resultado = izquierda - derecha;
-                break;
-            case "*":
-                resultado = izquierda * derecha;
-                break;
-            case "/":
-                resultado = izquierda / derecha;
-                break;
-            default:
-                System.out.println("Introduce un número entero o un signo (+ - * /)");
-                break;
+            switch (signo)
+            {
+                case "+":
+                    if (IsOperator(derecha))
+                    {
+                        Calcular(derecha)
+                    }
+                    elementos2 = Integer.parseInt(izquierda + derecha);
+
+                    break;
+                case "-":
+                    resultado = izquierda - derecha;
+                    break;
+                case "*":
+                    resultado = izquierda * derecha;
+                    break;
+                case "/":
+                    resultado = izquierda / derecha;
+                    break;
+                default:
+                    System.out.println("Introduce un número entero o un signo (+ - * /)");
+                    break;
+            }
         }
 
-        return resultado;
+        return elementos2;
     }
 }
+*/
