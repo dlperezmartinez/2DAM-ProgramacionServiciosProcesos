@@ -29,9 +29,6 @@ public class Ordenacion
 
     void ordenar(ArrayList lista)
     {
-        if(lista.get(0) instanceof Circulo)
-        {
-            //lista.sort(compareTo());
-        }
+
     }
 }

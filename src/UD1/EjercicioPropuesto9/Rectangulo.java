@@ -27,7 +27,7 @@ public class Rectangulo implements FiguraGeometrica
         FiguraGeometrica.super.Dibujar();
     }
 
-    @Override
+    //@Override
     public float compareTo(Rectangulo o) {
         return this.CalcularArea() - o.CalcularArea();
     }
