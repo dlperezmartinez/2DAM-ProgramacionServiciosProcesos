@@ -15,7 +15,7 @@ public class Proceso
         this.tiempoEjecución = tiempoEjecución;
     }
 
-    public Comparator<? super Proceso> getTiempoLlegada() {
-        return 1;
-    }
+//    public Comparator<? super Proceso> getTiempoLlegada() {
+//        return 1;
+//    }
 }

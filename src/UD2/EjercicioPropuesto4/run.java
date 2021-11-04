@@ -21,7 +21,7 @@ public class run
         procesos.add(E);
         procesos.add(F);
 
-        procesos.sort(procesos.get(0).getTiempoLlegada());
+//        procesos.sort(procesos.get(0).getTiempoLlegada());
 
         for(Proceso n : procesos)
         {
