@@ -23,7 +23,11 @@ public class Principal
 
         for (Future<Integer> n : resultados)
         {
-            System.out.println(n);
+            try {
+                System.out.println(n.get());
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
         }
 
     }
