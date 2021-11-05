@@ -1,7 +1,5 @@
 package UD2.EjercicioPropuesto8;
 
-import java.util.concurrent.Semaphore;
-
 public class Principal{
     static int Random(int max)
     {
@@ -10,11 +8,13 @@ public class Principal{
 
     public static void main(String[] args)
     {
-        Operaciones operacion = new Operaciones();
+        Ingresar operacion = new Ingresar();
         Cajero caja = new Cajero(2000);
 
         Thread ingresar = new Thread(operacion);
         Thread retirar = new Thread();
+
+
 
 
 
