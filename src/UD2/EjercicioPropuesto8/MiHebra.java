@@ -1,5 +1,7 @@
 package UD2.EjercicioPropuesto8;
 
+import java.util.concurrent.Semaphore;
+
 class MiHebra extends Thread
 {
     static int Random(int max)
