@@ -18,8 +18,8 @@ public class main
         Material libro1 = new Libros("10", "libro1", "autor1", 500);
 
         //ADD's
-        materiales.add(peli1);
         materiales.add(libro1);
+        materiales.add(peli1);
         materiales.add(peli2);
         materiales.add(peli3);
         materiales.add(peli4);

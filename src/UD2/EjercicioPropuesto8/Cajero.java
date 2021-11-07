@@ -9,7 +9,7 @@ public class Cajero
         this.saldo = saldo;
     }
     //MÉTODOS
-    void Ingresar(float cantidad)
+    synchronized void Ingresar(float cantidad)
     {
         this.saldo += cantidad;
 
@@ -17,7 +17,7 @@ public class Cajero
         System.out.println("Saldo: " + saldo);
     }
 
-    void Retirar(float cantidad)
+    synchronized void Retirar(float cantidad)
     {
         this.saldo -= cantidad;
 

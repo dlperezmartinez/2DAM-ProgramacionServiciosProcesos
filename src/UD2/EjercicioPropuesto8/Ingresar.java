@@ -1,38 +1,33 @@
 package UD2.EjercicioPropuesto8;
 
-import java.util.concurrent.Semaphore;
-
-class Randomizar
+class MiHebra extends Thread
 {
-    int Random(int max)
+    static int Random(int max)
     {
         return (int) (Math.random() * max + 1);
     }
-}
 
-public class Ingresar implements Runnable
-{
-    //Semaphore semaphore = new Semaphore(2, true);
+    //ATRIBUTOS
+    int miID;
+    Cajero cajero;
 
-    void IngresoRandom(Cajero c)
-    {
-        c.Ingresar(new Randomizar().Random(100));
+    public MiHebra(int miID, Cajero cajero) {
+        this.miID = miID;
+        this.cajero = cajero;
     }
 
     @Override
     public void run() {
-        for (int i = 0; i < -1; i++)
+        for (int i = 0; i > -1; i++)
         {
-            IngresoRandom(Principal.caja());
+            if (miID == 0)
+            {
+                cajero.Ingresar(Random(100));
+            }
+            else if (miID == 1)
+            {
+                cajero.Retirar(Random(150));
+            }
         }
-    }
-}
-
-public class Retirar implements Runnable{
-
-
-    @Override
-    public void run() {
-        caja.Retirar(new Randomizar().Random(100);
     }
 }
