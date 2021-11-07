@@ -4,12 +4,20 @@ public class Hilos implements Runnable
 {
     //ATRIBUTOS
     int inicio, fin, id;
-    Primos primos;  //Creo que no hace falta pero tiene pinta de que así es más eficiente
-                    //Si pongo "new Primos()", estará creando el objeto cada vez
     //CONSTRUCTOR
-    public Hilos(int id, Primos primos) {
+    public Hilos(int id) {
         this.id = id;
-        this.primos = primos;
+    }
+
+    boolean esPrimo(int numero) {
+        int contador = 2;
+        boolean primo=true;
+        while ((primo) && (contador!=numero)){
+            if (numero % contador == 0)
+                primo = false;
+            contador++;
+        }
+        return primo;
     }
 
     @Override
@@ -20,7 +28,7 @@ public class Hilos implements Runnable
 
         for (int i = inicio; i < fin; i++)
         {
-            if (primos.esPrimo(i))
+            if (esPrimo(i))
             {
                 System.out.println(i);
             }
