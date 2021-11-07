@@ -12,17 +12,11 @@ public class Cajero
     synchronized void Ingresar(float cantidad)
     {
         this.saldo += cantidad;
-
-        System.out.println("Ingreso: " + cantidad);
-        System.out.println("Saldo: " + saldo);
     }
 
     synchronized void Retirar(float cantidad)
     {
         this.saldo -= cantidad;
-
-        System.out.println("Retirada: " + cantidad);
-        System.out.println("Saldo: " + saldo);
     }
 
     //GETTERS Y SETTERS

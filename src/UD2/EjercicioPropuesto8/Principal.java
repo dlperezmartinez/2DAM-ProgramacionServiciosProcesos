@@ -12,11 +12,6 @@ public class Principal{
         MiHebra h1 = new MiHebra(1, caja);
 
         h0.start();
-        try {
-            h0.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         h1.start();
     }
 }
