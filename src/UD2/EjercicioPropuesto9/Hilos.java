@@ -14,7 +14,7 @@ public class Hilos extends Thread
 
     @Override
     public void run() {
-        contador.Random();
-        //contador.RandomSyncronized();
+        contador.Random(this);
+        //contador.RandomSyncronized(this);
     }
 }

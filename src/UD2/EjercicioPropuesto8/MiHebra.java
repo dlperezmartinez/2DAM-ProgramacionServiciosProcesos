@@ -26,11 +26,6 @@ class MiHebra extends Thread
             {
                 int cantidad = Random(100);
 
-                System.out.println("\nHEBRA 1\n");
-
-                System.out.println("Ingreso: " + cantidad);
-                System.out.println("Saldo: " + cajero.getSaldo());
-
                 cajero.Ingresar(cantidad);
 
                 try {
@@ -42,11 +37,6 @@ class MiHebra extends Thread
             else if (miID == 1)
             {
                 int cantidad = Random(150);
-
-                System.out.println("\nHEBRA 2\n");
-
-                System.out.println("Retirada: " + cantidad);
-                System.out.println("Saldo: " + cajero.getSaldo());
 
                 cajero.Retirar(cantidad);
 

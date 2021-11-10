@@ -8,8 +8,10 @@ public class Contador
         this.cantidad = cantidad;
     }
 
-    void Random()
+    void Random(Hilos hilo)
     {
+        System.out.print("Hilo " + hilo.nombre + ": ");
+
         //Numero random
         int numero = (int) (Math.random() * 5000 + 1);
 
@@ -25,8 +27,10 @@ public class Contador
         System.out.println(cantidad);
     }
 
-    synchronized void RandomSyncronized()
+    synchronized void RandomSyncronized(Hilos hilo)
     {
+        System.out.print("Hilo " + hilo.nombre + ": ");
+
         //Numero random
         int numero = (int) (Math.random() * 5000 + 1);
 
