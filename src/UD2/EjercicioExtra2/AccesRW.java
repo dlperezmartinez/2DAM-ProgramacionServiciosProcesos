@@ -20,7 +20,7 @@ public class AccesRW
     //Método para ESCRIBIR en el array
     public void escribir(Escritor escritor)
     {
-        recursos.add("Soy el escritor %d y son las %d".formatted(escritor.ID, Time.getTime()));
+        //recursos.add("Soy el escritor %d y son las %d".formatted(escritor.ID, Time.getTime()));
     }
 
     //Método para LEER el array
