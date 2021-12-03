@@ -1,18 +1,19 @@
-package UD2.PracticaEvaluableSemaforos;
+package UD2.PracticaEvaluableSemaforos.Parte2;
 
-public class Cliente extends Thread{
+public class Trabajador extends Thread{
     //ATRIBUTOS
     Restaurante restaurante;
     int ID;
 
     //CONSTRUCTOR
-    public Cliente(Restaurante restaurante, int id) {
+    public Trabajador(Restaurante restaurante, int id) {
         this.restaurante = restaurante;
         this.ID = id;
     }
 
+    //MÉTODOS
     @Override
     public void run() {
-        restaurante.hacerComanda(ID);
+        restaurante.cocinar(ID);
     }
 }
