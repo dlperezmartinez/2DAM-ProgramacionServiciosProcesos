@@ -1,4 +1,4 @@
-package UD3.EjercicioPropuesto1;
+package UD3.EjercicioPropuesto1.VersiónExtendsThread;
 
 public class Hilos extends Thread{
     @Override
