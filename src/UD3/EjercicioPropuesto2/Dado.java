@@ -10,5 +10,10 @@ public class Dado extends Thread{
     @Override
     public void run() {
         tirada = (int) (Math.random()*5+1);
+        System.out.println("Dado nº"+ ID + " tirada: " + tirada);
+    }
+
+    public int getTirada() {
+        return tirada;
     }
 }
