@@ -4,13 +4,5 @@ public class Cliente extends Thread{
 
     public void run(Agencia a) {
         a.asientosLibres(3);
-
-        try {
-            wait(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("Pagado.");
     }
 }
