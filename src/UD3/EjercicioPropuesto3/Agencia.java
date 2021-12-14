@@ -3,18 +3,18 @@ package UD3.EjercicioPropuesto3;
 public class Agencia {
     int asientos = 5;
 
-    void asientosLibres(int reserva) {
+    synchronized void asientosLibres(int id, int reserva) {
         if ((asientos -= reserva) > 0) {
-            System.out.println("Asientos disponibles.");
+            System.out.println("Cliente " + id + " --> Asientos disponibles.");
 
-            pagar(reserva);
+            pagar(id, reserva);
         } else {
-            System.out.println("No hay asientos disponibles.");
+            System.out.println("Cliente " + id + " --> No hay asientos disponibles.");
         }
     }
 
-    void pagar(int reserva) {
-        System.out.println("Pagando...");
+    synchronized void pagar(int id, int reserva) {
+        System.out.println("Cliente " + id + " --> Pagando...");
 
         try {
             wait(3000);
@@ -22,12 +22,12 @@ public class Agencia {
             e.printStackTrace();
         }
 
-        reservarAsientos(reserva);
+        reservarAsientos(id, reserva);
     }
 
-    void reservarAsientos(int reserva) {
+    synchronized void reservarAsientos(int id, int reserva) {
         asientos -= reserva;
 
-        System.out.println("Reserva realizada con éxito!");
+        System.out.println("Cliente " + id + " --> Reserva realizada con éxito!");
     }
 }
