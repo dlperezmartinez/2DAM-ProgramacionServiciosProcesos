@@ -6,6 +6,21 @@ public class MiHebra extends Thread{
 
     @Override
     public void run() {
-        hola.hola();
+
+    }
+
+    synchronized void hola() {
+        System.out.println("Hola!");
+        notifyAll();
+    }
+
+    synchronized void adios() {
+        try {
+            wait();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Adiós.");
     }
 }

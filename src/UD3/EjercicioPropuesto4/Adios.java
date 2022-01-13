@@ -1,7 +1,7 @@
 package UD3.EjercicioPropuesto4;
 
 public class Adios {
-    public void adios() {
+    public synchronized void adios() {
         try {
             wait();
         } catch (InterruptedException e) {
