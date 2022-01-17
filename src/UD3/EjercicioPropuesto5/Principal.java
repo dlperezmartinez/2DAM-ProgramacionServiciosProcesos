@@ -1,12 +1,11 @@
 package UD3.EjercicioPropuesto5;
 
-import java.util.ArrayList;
-
 public class Principal {
     public static void main(String[] args) throws InterruptedException {
-        Almacen almacen = new Almacen();
-        Almacen almacen2 = new Almacen();
+        Produccion productor = new Produccion();
+        Consumicion consumidor = new Consumicion();
 
-
+        productor = new Thread();
+        consumidor.run();
     }
 }
