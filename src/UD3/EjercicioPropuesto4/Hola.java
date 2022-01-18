@@ -1,8 +1,10 @@
 package UD3.EjercicioPropuesto4;
 
-public class Hola {
-    public synchronized void hola() {
+public class Hola extends Data implements Runnable{
+    @Override
+    synchronized public void run() {
         System.out.println("Hola!");
-        notifyAll();
+        continuar = true;
+        notify();
     }
 }

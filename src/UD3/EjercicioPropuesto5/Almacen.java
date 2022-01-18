@@ -19,7 +19,7 @@ public class Almacen {
         productos.add(productoRandom());
         System.out.println("Producto CREADO.");
 
-        notifyAll();
+        notify();
     }
 
     synchronized void consumir() throws InterruptedException {
@@ -31,6 +31,6 @@ public class Almacen {
         System.out.println("Producto COMPRADO");
         productos.remove(1);
 
-        notifyAll();
+        notify();
     }
 }

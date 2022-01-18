@@ -2,9 +2,10 @@ package UD3.EjercicioPropuesto4;
 
 public class Principal {
     public static void main(String[] args) {
-        MiHebra hebra = new MiHebra();
+        Thread hola = new Thread(new Hola());
+        Thread adios = new Thread(new Adios());
 
-        hebra.adios();
-        hebra.hola();
+        adios.start();
+        hola.start();
     }
 }
