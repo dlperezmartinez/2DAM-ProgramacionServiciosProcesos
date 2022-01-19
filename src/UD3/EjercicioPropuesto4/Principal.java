@@ -2,10 +2,18 @@ package UD3.EjercicioPropuesto4;
 
 public class Principal {
     public static void main(String[] args) {
-        Thread hola = new Thread(new Hola());
-        Thread adios = new Thread(new Adios());
+        Data data = new Data();
 
-        adios.start();
-        hola.start();
+        //Adiós
+        new Thread(() -> {
+            try {
+                data.adios();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+        //Hola
+        new Thread(() -> data.hola()).start();
     }
 }
