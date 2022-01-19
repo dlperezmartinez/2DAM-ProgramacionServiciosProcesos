@@ -13,7 +13,6 @@ public class Coche implements Runnable {
         try {
             //Simulación de lo que tarda el coche en aparcar
             Thread.sleep(Parking.tiempoRandom(59000,1000));
-
             //Si está lleno el parking se pone en COLA
             while (Parking.aparcamientos.size() >= 10) {
                 System.out.println("No hay aparcamientos DISPONIBLES. (Coche de MATRICULA : " + this.matricula + " se pone a la COLA)");
@@ -35,7 +34,6 @@ public class Coche implements Runnable {
         //El coche se va
         Parking.aparcamientos.remove(this);
         System.out.println("Coche de MATRICULA: " + this.matricula + " SALE al parking. (Plazas libres: " + (10 - Parking.aparcamientos.size()) + ")");
-
         notify();
     }
 }

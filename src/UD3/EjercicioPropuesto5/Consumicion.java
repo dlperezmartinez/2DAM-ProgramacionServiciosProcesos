@@ -1,14 +1,22 @@
 package UD3.EjercicioPropuesto5;
 
-public class Consumicion extends Almacen implements Runnable{
+public class Consumicion implements Runnable{
     @Override
-    public void run() {
-        try {
-            while (true) {
-                consumir();
+    synchronized public void run() {
+        while(true) {
+            while (Almacen.productos.size() <= 0) {
+                System.out.println("No hay productos DISPONIBLES");
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+
+            System.out.println("Producto COMPRADO");
+            Almacen.productos.remove(1);
+
+            notify();
         }
     }
 }
