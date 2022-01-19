@@ -3,6 +3,9 @@ package UD3.EjercicioPropuesto7;
 import java.util.ArrayList;
 
 public class Parking {
-    ArrayList<Integer> aparcamientos = new ArrayList<>();
-    boolean lleno = aparcamientos.size() == 10;
+    static ArrayList<Coche> aparcamientos = new ArrayList<>();
+
+    static int tiempoRandom(int max, int min) {
+        return (int) (Math.random()*max+min);
+    }
 }
