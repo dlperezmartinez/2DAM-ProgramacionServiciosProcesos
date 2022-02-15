@@ -16,16 +16,11 @@ public class UrlTester {
     }
 
     //Método que comprueba si "String s" es una dirección IP o si es una URL y devuelve respectivamente la opuesta
-    static boolean test(String s) throws MalformedURLException {
+    static boolean test(String s) throws IOException {
         if (!s.equals("exit") && !s.equals("quit")) {
 
             URL url = new URL(s);
-            URLConnection urlConnection = new URLConnection(s) {
-                @Override
-                public void connect() throws IOException {
-
-                }
-            };
+            URLConnection urlConnection = url.openConnection();
             urlConnection.getContentType();
 
             System.out.println( "\nProtocolo: " + url.getProtocol() +
