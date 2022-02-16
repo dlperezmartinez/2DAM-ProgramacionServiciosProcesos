@@ -34,6 +34,7 @@ public class UrlTester {
                 System.out.println("Formato de archivo: " + contenido);
                 System.out.println("Tamaño de la imagen (MB's): " + (((double)urlConnection.getContentLength()/1024)/1024));
             } else {
+                System.out.println("Formato de archivo: " + contenido);
                 System.out.println("Tamaño del archivo: " + urlConnection.getContentLength());
                 System.out.println("Última modificación: " + urlConnection.getLastModified());
             }
@@ -50,7 +51,7 @@ public class UrlTester {
 //                "\nAutoridad: " + url.getAuthority() +
 //                "\nPath: " + url.getPath() +
 //                "\nQuery: " + url.getQuery() +
-//                "\nFile: " + url.getFile() +
-//                "\nPort: " + url.getPort()
+//                "\nFile: " + url.getFile() + https://media.geeksforgeeks.org/wp-content/uploads/20211110131616/mm.png
+//                "\nPort: " + url.getPort() https://lol.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.euw.zip
     }
 }
