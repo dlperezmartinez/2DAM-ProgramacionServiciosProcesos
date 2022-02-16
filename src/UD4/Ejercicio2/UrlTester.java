@@ -5,7 +5,7 @@ import java.net.*;
 import java.util.Scanner;
 
 public class UrlTester {
-    public static void main(String[] args) throws UnknownHostException, MalformedURLException {
+    public static void main(String[] args) throws IOException {
         Scanner in = new Scanner(System.in);
 
         System.out.println("\n-URL TESTER-\n");
@@ -15,20 +15,29 @@ public class UrlTester {
         while (test(in.nextLine()));
     }
 
-    //Método que comprueba si "String s" es una dirección IP o si es una URL y devuelve respectivamente la opuesta
     static boolean test(String s) throws IOException {
         if (!s.equals("exit") && !s.equals("quit")) {
 
+            if (!s.matches("^https://.*")) {
+                s = "https://www." + s;
+            }
+
             URL url = new URL(s);
             URLConnection urlConnection = url.openConnection();
-            urlConnection.getContentType();
 
-            System.out.println( "\nProtocolo: " + url.getProtocol() +
-                                "\nAutoridad: " + url.getAuthority() +
-                                "\nPath: " + url.getPath() +
-                                "\nQuery: " + url.getQuery() +
-                                "\nFile: " + url.getFile() +
-                                "\nPort: " + url.getPort());
+            String contenido = urlConnection.getContentType();
+
+            if (contenido.matches("^text.*")) {
+                System.out.println("Formato de archivo: " + contenido);
+                System.out.println("Codificación: " + urlConnection.getContentEncoding());
+            } else if (contenido.matches("^image.*")) {
+                System.out.println("Formato de archivo: " + contenido);
+                System.out.println("Tamaño de la imagen (MB's): " + (((double)urlConnection.getContentLength()/1024)/1024));
+            } else {
+                System.out.println("Tamaño del archivo: " + urlConnection.getContentLength());
+                System.out.println("Última modificación: " + urlConnection.getLastModified());
+            }
+
         } else {
             return false;
         }
@@ -37,12 +46,11 @@ public class UrlTester {
 
         return true;
 
-//        if (s.matches("[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}")) {
-//            System.out.println(InetAddress.getByName(s).getHostName());
-//        } else if (s.matches("[a-z._%+-]*")) {
-//            System.out.println(InetAddress.getByName(s).getHostAddress());
-//        } else {
-//            System.out.println("\nDirección no válida.\n");
-//        }
+//        "\nProtocolo: " + url.getProtocol() +
+//                "\nAutoridad: " + url.getAuthority() +
+//                "\nPath: " + url.getPath() +
+//                "\nQuery: " + url.getQuery() +
+//                "\nFile: " + url.getFile() +
+//                "\nPort: " + url.getPort()
     }
 }
