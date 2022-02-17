@@ -28,8 +28,10 @@ public class UrlTester {
             String contenido = urlConnection.getContentType();
 
             if (contenido.matches("^text.*")) {
-                System.out.println("Formato de archivo: " + contenido);
-                System.out.println("Codificación: " + urlConnection.getContentEncoding());
+                String [] splited = contenido.split(";");
+
+                System.out.println("Formato de archivo: " + splited[0]);
+                System.out.println("Codificación: " + splited[1]);
             } else if (contenido.matches("^image.*")) {
                 System.out.println("Formato de archivo: " + contenido);
                 System.out.println("Tamaño de la imagen (MB's): " + (((double)urlConnection.getContentLength()/1024)/1024));
