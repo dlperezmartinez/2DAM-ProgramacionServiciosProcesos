@@ -5,7 +5,7 @@ public class MainRuleta {
 
     static boolean iniciada = false;
     static boolean ronda = false;
-    static boolean apostado = false;
+    static int apostado = 0;
 
     public static void main(String[] args) {
         // INSTANCIAS

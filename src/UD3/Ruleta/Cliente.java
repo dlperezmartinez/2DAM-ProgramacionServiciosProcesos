@@ -46,14 +46,17 @@ public class Cliente extends Thread{
         }
     }
 
-    synchronized void apostar() throws InterruptedException {
+    void apostar() throws InterruptedException {
         System.out.println("Apuesta esperando...");
-        while (!MainRuleta.iniciada || !MainRuleta.ronda) {
-            wait();
-        }
-        System.out.println("despues del wait");
+
+        casino.espera();
+
+
 
         boolean b = casino.ronda(numeroApostar, apuesta, nombre); //Primero apuestan y continuan según la estrategia
+
+        casino.notificar();
+
         banco -= apuesta; // Se resta la cantidad apostada al banco
 
         switch (estrategia) {
@@ -67,18 +70,16 @@ public class Cliente extends Thread{
                 alambert(b);
                 break;
         }
-
-        MainRuleta.apostado = true;
-        notifyAll();
     }
 
     @Override
     public void run() {
-        try {
-            apostar();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        while (true){
+            try {
+                apostar();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-
     }
 }

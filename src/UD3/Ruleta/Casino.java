@@ -16,18 +16,34 @@ public class Casino extends Thread{
         System.out.println("notificado");
     }
 
+    // Este es el método que hace los waits para otras clases
+    synchronized void espera() throws InterruptedException {
+        while (!MainRuleta.iniciada ) { //|| !MainRuleta.ronda
+            wait();
+        }
+
+        notifyAll();
+        System.out.println("notificado2");
+    }
+
+    synchronized void notificar() {
+        notifyAll();
+    }
+
     // Este método pide el número al que apuestan los clientes y lo compara con el resultado de la tirada
     // si coincide devuelve true si no false.
     synchronized boolean ronda(int numeroApostar, int apuesta, String nombre) throws InterruptedException {
-        while (!MainRuleta.apostado) {
+        while (MainRuleta.apostado < 6) {
             wait();
         }
+        System.out.println("ronda comienza");
 
         numTiradas--;
 
         System.out.println("El jugador " + nombre + " apuesta " + apuesta + " al número " + numeroApostar + ".");
 
-        MainRuleta.apostado = false;
+        MainRuleta.apostado++;
+        System.out.println("apostado = true");
 
         if (tirada != 0) {
             if (numeroApostar == tirada) {
@@ -45,8 +61,11 @@ public class Casino extends Thread{
         }
     }
 
-    int girarRuleta() {
-        return (int) (Math.random()*36+0);
+    synchronized int girarRuleta() throws InterruptedException {
+        while (MainRuleta.apostado < 6) {
+            wait();
+        }
+        return (int) (Math.random() * 36 + 0);
     }
 
     synchronized void finPartida() throws InterruptedException {
@@ -66,12 +85,18 @@ public class Casino extends Thread{
             e.printStackTrace();
         }
 
-        tirada = girarRuleta();
+        while (true) {
+            try {
+                tirada = girarRuleta();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
-        try {
-            finPartida();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            try {
+                finPartida();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
