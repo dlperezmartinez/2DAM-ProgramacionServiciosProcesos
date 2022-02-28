@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class SocketClient {
 
-    public class DatagramSocketClient {
+    public static class DatagramSocketClient {
         InetAddress serverIP;
         int serverPort;
         DatagramSocket socket;

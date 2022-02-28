@@ -25,31 +25,30 @@ public class SocketServer {
             InetAddress clientIP;
             int clientPort;
 
-
-            while (menu) {
-                System.out.println("Elige el modo de funcionamiento: \n" +
-                        "1 -> Modo normal.\n" +
-                        "2 -> Modo suma.\n");
-                modo = in.nextInt();
-
-                switch (modo) {
-                    case 1:
-                        System.out.println("Modo normal seleccionado.");
-                        menu = false;
-                        break;
-                    case 2:
-                        System.out.println("Modo suma seleccionado.");
-                        menu = false;
-                        break;
-                    default:
-                        System.out.println("Introduce 1 o 2 por favor.");
-                        break;
-                }
-            }
-
-
             //el servidor at�n el port indefinidament
             while(true){
+
+                while (menu) {
+                    System.out.println("Elige el modo de funcionamiento: \n" +
+                            "1 -> Modo normal.\n" +
+                            "2 -> Modo suma.\n");
+                    modo = in.nextInt();
+
+                    switch (modo) {
+                        case 1:
+                            System.out.println("Modo normal seleccionado.");
+                            menu = false;
+                            break;
+                        case 2:
+                            System.out.println("Modo suma seleccionado.");
+                            menu = false;
+                            break;
+                        default:
+                            System.out.println("Introduce 1 o 2 por favor.");
+                            break;
+                    }
+                }
+
                 //creaci� del paquet per rebre les dades
                 DatagramPacket packet = new DatagramPacket(receivingData, 1024);
                 //espera de les dades
