@@ -5,6 +5,7 @@ public class Cliente extends Thread{
     Casino casino;
 
     String nombre;
+    boolean clienteApostado = false;
 
     int banco = 1000;
     int apuesta = 1;
@@ -47,12 +48,17 @@ public class Cliente extends Thread{
     }
 
     void apostar() throws InterruptedException {
-        System.out.println("Apuesta esperando...");
-
         casino.espera();
 
+        casino.notificar();
 
+        // El método aleatorio
+        if (!fijo) {
+            numeroApostar = (int) (Math.random()*35+1);
+        }
 
+        System.out.println(MainRuleta.apostado);
+        // Apuestan
         boolean b = casino.ronda(numeroApostar, apuesta, nombre); //Primero apuestan y continuan según la estrategia
 
         casino.notificar();
