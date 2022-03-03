@@ -1,12 +1,11 @@
 package UD3.Ruleta;
 
-import UD1.Extra2.Main;
-
 public class Casino extends Thread{
     // ATRIBUTOS
     int numTiradas = 50;
     int tirada;
     boolean ruletaGirada = false;
+    int puedeGirar = 0;
 
     synchronized void inicioPartida() throws InterruptedException {
         sleep(2000);
@@ -19,7 +18,7 @@ public class Casino extends Thread{
 
     // Este es el método que hace los waits para otras clases
     synchronized void espera() throws InterruptedException {
-        while (!MainRuleta.iniciada || !(MainRuleta.apostado < 6)) { //|| !MainRuleta.ronda
+        while (!MainRuleta.iniciada || !(MainRuleta.apostado < 6 || ruletaGirada)) { //|| !MainRuleta.ronda
             wait();
         }
 
@@ -42,8 +41,8 @@ public class Casino extends Thread{
         }
 
         System.out.println("El jugador " + nombre + " apuesta " + apuesta + " al número " + numeroApostar + ".");
-
-        MainRuleta.apostado++;
+        puedeGirar++;
+        notifyAll();
 
         while (!ruletaGirada) {
             wait();
@@ -54,18 +53,21 @@ public class Casino extends Thread{
                 MainRuleta.ronda = false;
                 MainRuleta.apostado = 0;
                 ruletaGirada = false;
+                notifyAll();
                 return true;
 
             } else {
                 MainRuleta.ronda = false;
                 MainRuleta.apostado = 0;
                 ruletaGirada = false;
+                notifyAll();
                 return false;
             }
         } else {
             MainRuleta.ronda = false;
             MainRuleta.apostado = 0;
             ruletaGirada = false;
+            notifyAll();
             return false;
         }
     }
@@ -73,9 +75,10 @@ public class Casino extends Thread{
     synchronized int girarRuleta() throws InterruptedException {
         int tirada;
 
-        while (MainRuleta.apostado < 6) {
+        while (puedeGirar < 6) {
             wait();
         }
+        MainRuleta.apostado = 0; // Una vez tirada la ruleta se puede apostar otra vez
 
         System.out.println("Girando ruleta...");
         sleep(2000);
@@ -84,10 +87,10 @@ public class Casino extends Thread{
 
         ruletaGirada = true;
         numTiradas--;
+        puedeGirar = 0;
         notifyAll();
 
         System.out.println("Tirada " + numTiradas + ": " + tirada);
-        MainRuleta.apostado = 0; // Una vez tirada la ruleta se puede apostar otra vez
 
         return tirada;
     }
